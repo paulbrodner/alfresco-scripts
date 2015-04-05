@@ -35,3 +35,4 @@ build/
 .rvmrc
 .project
 private_key
+.vagrant
