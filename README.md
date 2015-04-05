@@ -9,7 +9,7 @@ Clone the repository
 git clone https://github.com/paulbrodner/alfresco-scripts
 ```
 
-Modigy configuration files as you wish and run rake helper commands to execute them
+Modify configuration/scripts files as you wish and run rake helper commands to execute them
 ```ruby
 rake -T # for a list of available tasks
 ```
