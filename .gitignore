@@ -36,3 +36,7 @@ build/
 .project
 private_key
 .vagrant
+
+.buildpath
+
+connections/vagrant/alfresco-enterprise-5.0-installer-linux-x64.bin

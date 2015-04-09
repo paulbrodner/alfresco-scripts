@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+	<bean name="authorityToChildAuthorityCache" class="org.alfresco.repo.cache.TransactionalCache">
+		<property name="sharedCache">
+			<ref bean="authorityToChildAuthoritySharedCache" />
+		</property>
+		<property name="name">
+			<value>org.alfresco.authorityToChildAuthorityTransactionalCache</value>
+		</property>
+		<property name="maxCacheSize" value="100000" />
+		<property name="allowEqualsChecks" value="true" />
+		<property name="mutable" value="true" />
+		<property name="disableSharedCache" value="${system.cache.disableMutableSharedCaches}" />
+	</bean>
+
+	<!-- The transactional cache for authority containers -->
+
+	<bean name="authorityLookupCache" class="org.alfresco.repo.cache.TransactionalCache">
+		<property name="sharedCache">
+			<ref bean="authoritySharedCache" />
+		</property>
+		<property name="name">
+			<value>org.alfresco.authorityTransactionalCache</value>
+		</property>
+		<property name="maxCacheSize" value="100000" />
+		<property name="allowEqualsChecks" value="true" />
+		<property name="mutable" value="true" />
+		<property name="disableSharedCache" value="${system.cache.disableMutableSharedCaches}" />
+	</bean>
+
+	<bean name="personCache" class="org.alfresco.repo.cache.TransactionalCache">
+		<property name="sharedCache">
+			<ref bean="personSharedCache" />
+		</property>
+		<property name="name">
+			<value>org.alfresco.personTransactionalCache</value>
+		</property>
+		<property name="maxCacheSize" value="50000" />
+		<property name="mutable" value="true" />
+		<property name="disableSharedCache" value="${system.cache.disableMutableSharedCaches}" />
+	</bean>
+
+</beans>
+
