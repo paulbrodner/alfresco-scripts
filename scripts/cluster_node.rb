@@ -9,7 +9,9 @@ module ClusterNode
   global = use_file($config, "alfresco-global.properties.erb")
   Command.upload_file(global, "/home/bm0013/alfresco-4.1.10/tomcat/shared/classes/alfresco-global.properties")
 
-  #disable ssl
+  Command.upload_file(use_file($config, "ctl.sh"), "/home/bm0013/alfresco-4.1.10/tomcat/scripts/ctl.sh")
+  
+  #disable ssl  
   Command.upload_file(use_file($config, "server.xml.erb"), "/home/bm0013/alfresco-4.1.10/tomcat/conf/server.xml")
   Command.upload_file(use_file($config, "tomcat-users.xml"), "/home/bm0013/alfresco-4.1.10/tomcat/conf/tomcat-users.xml")
   Command.upload_file(use_file($config, "web.xml"), "/home/bm0013/alfresco-4.1.10/tomcat/webapps/alfresco/WEB-INF/web.xml")
