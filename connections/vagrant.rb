@@ -4,8 +4,8 @@ module Vagrant
   Config.on "vagrant" do
     settings do
       hostname "127.0.0.1"
-      username "vagrant"
-      port 2222
+      username Env.user
+      port Env.port
       # run vagrant ssh-config to find the path of key_data
       key_data "connections/vagrant/.vagrant/machines/default/virtualbox/private_key"
     end
@@ -20,4 +20,3 @@ module Vagrant
     tmp "/tmp"
   end
 end
-
