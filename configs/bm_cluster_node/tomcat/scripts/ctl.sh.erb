@@ -1,9 +1,9 @@
 #!/bin/sh
 
-CATALINA_HOME=/home/bm0013/alfresco-4.1.10/tomcat
-TOMCAT_BINDIR=/home/bm0013/alfresco-4.1.10/tomcat/bin
-JAVA_HOME=/home/bm0013/alfresco-4.1.10/java
-CATALINA_PID=/home/bm0013/alfresco-4.1.10/tomcat/temp/catalina.pid
+CATALINA_HOME=<%= $config.tomcat.home %>
+TOMCAT_BINDIR=<%= $config.tomcat.home %>/bin
+JAVA_HOME=<%= $config.alfresco.home %>/java
+CATALINA_PID=<%= $config.tomcat.home %>/temp/catalina.pid
 export CATALINA_PID
 TOMCAT_STATUS=""
 ERROR=0
