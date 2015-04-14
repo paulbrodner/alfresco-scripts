@@ -4,7 +4,7 @@
 ## Enterprise overlay         #
 ###############################
 
-dir.root=/home/bm0013/alfresco-4.1.10/alf_data
+dir.root=<%= $config.alfresco.home %>/alf_data
 
 dir.remote=<%= $config.dir.remote %>
 dir.contentstore=${dir.remote}/data
@@ -61,17 +61,17 @@ action.rmi.service.port=0
 deployment.rmi.service.port=0
 
 ### External executable locations ###
-ooo.exe=/home/bm0013/alfresco-4.1.10/openoffice/program/soffice.bin
+ooo.exe=<%= $config.alfresco.home %>/openoffice/program/soffice.bin
 ooo.enabled=false
 ooo.port=8100
-img.root=/home/bm0013/alfresco-4.1.10/common
+img.root=<%= $config.alfresco.home %>/common
 img.dyn=${img.root}/lib
 img.exe=${img.root}/bin/convert
-swf.exe=/home/bm0013/alfresco-4.1.10/common/bin/pdf2swf
-swf.languagedir=/home/bm0013/alfresco-4.1.10/common/japanese
+swf.exe=<%= $config.alfresco.home %>/common/bin/pdf2swf
+swf.languagedir=<%= $config.alfresco.home %>/common/japanese
 
 jodconverter.enabled=false
-jodconverter.officeHome=/home/bm0013/alfresco-4.1.10/openoffice
+jodconverter.officeHome=<%= $config.alfresco.home %>/openoffice
 jodconverter.portNumbers=8100
 
 ### Initial admin password ###
@@ -81,7 +81,7 @@ alfresco_user_store.adminpassword=209c6174da490caeb422f3fa5a7ae634
 notification.email.siteinvite=false
 
 ### License location ###
-dir.license.external=/home/bm0013/alfresco-4.1.10
+dir.license.external=<%= $config.tomcat.shared.classes.alfresco_license %>
 
 ### Solr indexing ###
 index.subsystem.name=solr

@@ -8,7 +8,10 @@ module ClusterNode
 
   global = use_file($config, "alfresco-global.properties.erb")
   Command.upload_file(global, "#{$config.tomcat.shared.classes.home}/alfresco-global.properties")
-
+  
+  Command.run_shell "mkdir #{$config.tomcat.shared.classes.alfresco_license}"
+  Command.upload_file(use_file($config, "ravi-41.lic"), "#{$config.tomcat.shared.classes.alfresco_license}/ravi-41.lic")
+  
   Command.upload_file(use_file($config, "ctl.sh"), "#{$config.tomcat.scripts}/ctl.sh")
 
   #disable ssl
