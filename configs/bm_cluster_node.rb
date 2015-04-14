@@ -61,4 +61,6 @@ module BmClusterNode
       port "8080"
     end
   end
+  
+  Config.bm_cluster_node.add_compatibility!("cluster_node") #compatible only with this script
 end
