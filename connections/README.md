@@ -19,4 +19,4 @@ staging:
 production:
   <<: *defaults
 ```
-And use them in your scripts as: Env.email
+And use them in your scripts as: ENV['email']
