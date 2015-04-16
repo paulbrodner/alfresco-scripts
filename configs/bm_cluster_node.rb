@@ -63,6 +63,6 @@ module BmClusterNode
   end
 
   #add compatible with this script
-  Config.bm_cluster_node.add_compatibility!("cluster_node")
+  Config.bm_cluster_node.add_compatibility!("update_cluster_node")
   Config.bm_cluster_node.add_compatibility!("restart_alfresco_tomcat")
 end

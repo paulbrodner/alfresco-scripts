@@ -4,5 +4,4 @@ module Simple
     shell "ls -la /vagrant"   
   end
   
-  Config.simple.add_compatibility!("connect") #will be executed only on install script
 end
