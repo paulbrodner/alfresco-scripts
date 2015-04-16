@@ -61,6 +61,8 @@ module BmClusterNode
       port "8080"
     end
   end
-  
-  Config.bm_cluster_node.add_compatibility!("cluster_node") #compatible only with this script
+
+  #add compatible with this script
+  Config.bm_cluster_node.add_compatibility!("cluster_node")
+  Config.bm_cluster_node.add_compatibility!("restart_alfresco_tomcat")
 end
