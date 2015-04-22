@@ -16,7 +16,7 @@ start_tomcat() {
         echo "$0 $ARG: tomcat (pid $PID) already running"
     else
 	rm -f $CATALINA_PID
-	export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -Xss1024k -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=/home/bm0013/alfresco-4.1.10 -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true"
+	export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -Xss1024k -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=<%= $config.alfresco.home %> -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true"
 	$TOMCAT_BINDIR/startup.sh 
 	if [ $? -eq 0 ];  then
             echo "$0 $ARG: tomcat started"
@@ -28,7 +28,7 @@ start_tomcat() {
 }
 
 daemon_tomcat() {
-    export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=/home/bm0013/alfresco-4.1.10 -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true -XX:ReservedCodeCacheSize=128m"
+    export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=<%= $config.alfresco.home %> -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true -XX:ReservedCodeCacheSize=128m"
     $TOMCAT_BINDIR/catalina.sh run
 }
 
