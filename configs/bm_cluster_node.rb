@@ -36,8 +36,7 @@ module BmClusterNode
     end
 
     dir do
-      #remote "/data/nfs/replicate/bm0013_4110_b5"
-      remote "/data/nfs/replicate/upgrade-402-411"
+      remote "/data/nfs/replicate/bm0013_4110_b5"
     end
 
     db do
@@ -65,4 +64,5 @@ module BmClusterNode
   #add compatible with this script
   Config.bm_cluster_node.add_compatibility!("update_cluster_node")
   Config.bm_cluster_node.add_compatibility!("restart_alfresco_tomcat")
+  Config.bm_cluster_node.add_compatibility!("cleanup_logs")
 end
