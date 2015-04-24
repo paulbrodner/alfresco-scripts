@@ -4,7 +4,8 @@ module BmClusterNode
   Config.on "bm_cluster_node" do
 
     alfresco do
-      home "/home/bm0013/alfresco-4.1.10"
+      home "/home/#{ENV['username']}/alfresco-4.1.10"
+      log File.join(Config.bm_cluster_node.alfresco.home,"alfresco.log")
     end
 
     hazelcast do
@@ -18,7 +19,7 @@ module BmClusterNode
       lib File.join(Config.bm_cluster_node.tomcat.home,"lib")
       scripts File.join(Config.bm_cluster_node.tomcat.home,"scripts")
       conf File.join(Config.bm_cluster_node.tomcat.home,"conf")
-
+      catalina_out File.join(Config.bm_cluster_node.tomcat.home,"logs/catalina.out")
       shared do
         classes do
           home File.join(Config.bm_cluster_node.tomcat.home, "shared/classes")
@@ -27,10 +28,15 @@ module BmClusterNode
           alfresco_web_extension File.join(Config.bm_cluster_node.tomcat.shared.classes.home, "alfresco/web-extension")
         end
       end
+
       webapps do
         home File.join(Config.bm_cluster_node.tomcat.home,"webapps")
         alfresco do
           web_inf File.join(Config.bm_cluster_node.tomcat.webapps.home,"alfresco/WEB-INF")
+
+          classes do
+            log4j File.join(Config.bm_cluster_node.tomcat.webapps.alfresco.web_inf,"classes/log4j.properties")
+          end
         end
       end
     end
@@ -65,4 +71,5 @@ module BmClusterNode
   Config.bm_cluster_node.add_compatibility!("update_cluster_node")
   Config.bm_cluster_node.add_compatibility!("restart_alfresco_tomcat")
   Config.bm_cluster_node.add_compatibility!("cleanup_logs")
+  Config.bm_cluster_node.add_compatibility!("harvest_logs")
 end

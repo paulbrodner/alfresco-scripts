@@ -44,5 +44,5 @@ connections/vagrant/alfresco-enterprise-5.0-installer-linux-x64.bin
 *.lic
 connections/env.yml
 Gemfile.lock
-
+LOGS
 hosts

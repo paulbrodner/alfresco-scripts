@@ -10,6 +10,9 @@ module ClusterNode
   # upload
   Command.upload_file(use_file($config, "alfresco-global.properties.erb"), "#{$config.tomcat.shared.classes.home}/alfresco-global.properties")
   
+  #logs
+  Command.upload_file(use_file($config, "log4j.properties"), $config.tomcat.webapps.alfresco.classes.log4j)
+  
   # add license
   Command.run_shell "mkdir #{$config.tomcat.shared.classes.alfresco_license}"
   Command.upload_file(use_file($config, "ravi-41.lic"), "#{$config.tomcat.shared.classes.alfresco_license}/ravi-41.lic")
