@@ -1,4 +1,7 @@
-# restart alfresco tomcat server
+#
+# creates a backup copy of alfresco.log, solr.log and catalina.out
+# and it will empty those files
+# Solr,Alfresco, Tomcat on the same node.
 module CleanUpLogs
   include DevOn
 

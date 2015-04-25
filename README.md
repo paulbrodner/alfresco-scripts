@@ -43,6 +43,10 @@ Modify configuration/scripts files as you wish and run rake helper commands
 rake -T # for a list of available tasks
 ```
 
+## Useful Tools
+
+FreeSSHD http://www.freesshd.com/?ctt=download
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/alfresco-scripts/fork )

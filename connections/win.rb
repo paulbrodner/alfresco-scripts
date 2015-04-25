@@ -1,17 +1,14 @@
-module BmSl01
+module Win
   include DevOn
 
-  Config.on "bm_sl01" do
-    os OS_UNIX
+  Config.on "win" do
+    os OS_WIN
     
     settings do
-      hostname ENV['hostname']
+      hostname "127.0.0.1"
       username ENV['username']
       password ENV['password']
       port ENV['port']
-    end
-
-    tmp "/tmp"
+    end   
   end
 end
-

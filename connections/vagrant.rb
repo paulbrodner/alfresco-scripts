@@ -2,6 +2,8 @@ module Vagrant
   include DevOn
 
   Config.on "vagrant" do
+    os OS_UNIX
+    
     settings do
       hostname "127.0.0.1"
       username ENV['username']

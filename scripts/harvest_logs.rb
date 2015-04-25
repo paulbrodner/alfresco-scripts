@@ -1,3 +1,6 @@
+#
+# Collect alfresco.log and catalina.out logs from on node
+#
 module HarvestLogs
   include DevOn
   def self.structure(name)

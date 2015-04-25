@@ -1,4 +1,6 @@
 # restart alfresco tomcat server
+# kills postgres sql too
+#
 module Install
   include DevOn
 

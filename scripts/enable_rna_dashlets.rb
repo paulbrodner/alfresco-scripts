@@ -1,3 +1,6 @@
+#
+# Enable Pentaho Analytics reports
+#
 module EnableRnaDashlets
   include DevOn
 

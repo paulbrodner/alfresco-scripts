@@ -1,6 +1,19 @@
+#
+# update a node to be a cluster alfresco node.
+# using:
+#   mysql as connector
+#   tomcat tunned up for performance
+#   disabled secure communication with solr
+#   enable cluster 
+#   adding hazelcast
+# !Start Alfresco first, to create the web app
+#
 module ClusterNode
   include DevOn
-
+  
+  Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  Command.run_shell "kill -9 $(ps aux | grep '[t]omcat' | awk '{print $2}')"
+  
   # upload mysql conector
   Command.upload_file(use_file($config, "mysql-connector-java-5.1.17-bin.jar"), "#{$config.tomcat.lib}/mysql-connector-java-5.1.17-bin.jar")
 

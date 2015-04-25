@@ -2,6 +2,8 @@ module BmAt1
   include DevOn
 
   Config.on "aws_benched5" do
+    os OS_UNIX
+    
     settings do
       hostname ENV['hostname']
       username ENV['username']

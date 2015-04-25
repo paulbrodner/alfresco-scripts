@@ -1,0 +1,2 @@
+cd <%= $config.location.win %>
+java <%= $config.node.heap_size.maximum %> -XX:MaxPermSize=256m -jar <%= $config.jar_name %> -role node -hub http://localhost:4444/grid/register -maxSession <%= $config.node.max_sessions %> -browser browserName=firefox,platform=ANY,maxInstances=1

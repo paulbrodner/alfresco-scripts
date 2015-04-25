@@ -1,5 +1,6 @@
 #
 # Solr node installed on apache tomcat server
+
 # connected to Alfresco or LB instance
 # no SSL connection, just 8080 port used
 #

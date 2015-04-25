@@ -2,6 +2,8 @@ module BmAt2
   include DevOn
 
   Config.on "bm_at2" do
+    os OS_UNIX
+    
     settings do
       hostname ENV['hostname']
       username ENV['username']
