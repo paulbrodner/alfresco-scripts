@@ -5,7 +5,7 @@ module BmClusterNode
 
     alfresco do
       home "/home/#{ENV['username']}/alfresco-4.1.10"
-      log File.join(Config.bm_cluster_node.alfresco.home,"alfresco.log")
+      log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
     end
 
     hazelcast do
@@ -15,11 +15,11 @@ module BmClusterNode
 
     tomcat do
       jvmRoute $connection.tomcat.jvmRoute
-      home File.join(Config.bm_cluster_node.alfresco.home,"tomcat")
-      lib File.join(Config.bm_cluster_node.tomcat.home,"lib")
-      scripts File.join(Config.bm_cluster_node.tomcat.home,"scripts")
-      conf File.join(Config.bm_cluster_node.tomcat.home,"conf")
-      catalina_out File.join(Config.bm_cluster_node.tomcat.home,"logs/catalina.out")
+      home File.join(Config.bm_cluster_node.alfresco.home, "tomcat")
+      lib File.join(Config.bm_cluster_node.tomcat.home, "lib")
+      scripts File.join(Config.bm_cluster_node.tomcat.home, "scripts")
+      conf File.join(Config.bm_cluster_node.tomcat.home, "conf")
+      catalina_out File.join(Config.bm_cluster_node.tomcat.home, "logs/catalina.out")
       shared do
         classes do
           home File.join(Config.bm_cluster_node.tomcat.home, "shared/classes")
@@ -30,12 +30,12 @@ module BmClusterNode
       end
 
       webapps do
-        home File.join(Config.bm_cluster_node.tomcat.home,"webapps")
+        home File.join(Config.bm_cluster_node.tomcat.home, "webapps")
         alfresco do
-          web_inf File.join(Config.bm_cluster_node.tomcat.webapps.home,"alfresco/WEB-INF")
+          web_inf File.join(Config.bm_cluster_node.tomcat.webapps.home, "alfresco/WEB-INF")
 
           classes do
-            log4j File.join(Config.bm_cluster_node.tomcat.webapps.alfresco.web_inf,"classes/log4j.properties")
+            log4j File.join(Config.bm_cluster_node.tomcat.webapps.alfresco.web_inf, "classes/log4j.properties")
           end
         end
       end

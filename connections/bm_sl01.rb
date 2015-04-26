@@ -3,7 +3,7 @@ module BmSl01
 
   Config.on "bm_sl01" do
     os OS_UNIX
-    
+
     settings do
       hostname ENV['hostname']
       username ENV['username']

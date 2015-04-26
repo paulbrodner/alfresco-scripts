@@ -1,4 +1,3 @@
-
 ###############################
 ## Common Alfresco Properties #
 ## Enterprise overlay         #
@@ -95,7 +94,7 @@ solr.port.ssl=8443
 system.workflow.engine.jbpm.enabled=false
 
 
-#--------------- Benchmark Related 
+#--------------- Benchmark Related
 # https://ts.alfresco.com/share/page/site/bm/documentlibrary#filter=path%7C%2FProjects%2FBM-0013%2F1-Definition%2FConfig-V4.1.x%7C&page=1
 ### BPM Engine ###
 system.workflow.engine.jbpm.enabled=false
@@ -124,13 +123,13 @@ solr.solrConnectTimeout=5000
 alfresco.zoneAuthoritySampleSize=2000
 
 # Addded as temporary workaround for https://issues.alfresco.com/jira/browse/ALF-15383
-activities.feed.max.size=0 
+activities.feed.max.size=0
 # Added as temporary workaround for https://issues.alfresco.com/jira/browse/ALF-15383 - trying to clear the activities in a decent amount of time. Will re-enable for full runs.
 activities.feed.max.ageMins=1
 
 # Disable feed notifier flooding logs when SMTP server is not configured, especially hassling after bulk loading sessions
-activities.feed.notifier.enabled=false 
-# Disable cleaning jobs directly here 
+activities.feed.notifier.enabled=false
+# Disable cleaning jobs directly here
 activities.feed.cleaner.enabled=false
 activities.post.cleaner.enabled=false
 transformserver.aliveCheckTimeout=2
@@ -146,7 +145,7 @@ sync.mode=OFF
 
 system.workflow.maxGroupReviewers=100
 
-# 
+#
 # ALF-19700: BM-0013: Soak: V420b227_03: Transformation server overloaded
 # Limit TS capabilities to those present in 1.3.x
 #

@@ -3,15 +3,15 @@ module BmAt3
 
   Config.on "bm_at3" do
     os OS_UNIX
-    
+
     settings do
       hostname ENV['hostname']
       username ENV['username']
       password ENV['password']
       port ENV['port']
     end
-    
-    tomcat do 
+
+    tomcat do
       jvmRoute "alf03"
     end
 

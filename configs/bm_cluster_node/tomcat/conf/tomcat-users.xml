@@ -16,7 +16,7 @@
   limitations under the License.
 -->
 <tomcat-users>
-   <!-- DISABLE SSL FOR SOLR -->
+  <!-- DISABLE SSL FOR SOLR -->
   <!--  
   <user username="CN=Alfresco Repository Client, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repoclient" password="null"/>
   <user username="CN=Alfresco Repository, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repository" password="null"/>

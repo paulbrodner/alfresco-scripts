@@ -5,26 +5,26 @@ module MmSolrNode
 
     tomcat do
       home "/home/bm0013/apache-tomcat-7.0.59"
-      conf File.join(Config.bm_solr_node.tomcat.home,"conf")
-      
+      conf File.join(Config.bm_solr_node.tomcat.home, "conf")
+
       catalina do
-        localhost File.join(Config.bm_solr_node.tomcat.conf,"Catalina/localhost")
+        localhost File.join(Config.bm_solr_node.tomcat.conf, "Catalina/localhost")
       end
-      
+
       webapps do
-        home File.join(Config.bm_solr_node.tomcat.home,"webapps")
+        home File.join(Config.bm_solr_node.tomcat.home, "webapps")
         solr do
-          web_inf File.join(Config.bm_solr_node.tomcat.webapps.home,"solr/WEB-INF")
+          web_inf File.join(Config.bm_solr_node.tomcat.webapps.home, "solr/WEB-INF")
         end
       end
     end
-    
+
     solr do
       home "/home/bm0013/alfresco-enterprise-solr-4.1.10-b5"
       index_data "/data/solr/solr-index-data"
       core_properties do
-        archiveSpaceStore File.join(Config.bm_solr_node.solr.home,"archive-SpacesStore/conf/solrcore.properties")
-        workspaceSpaceStore File.join(Config.bm_solr_node.solr.home,"workspace-SpacesStore/conf/solrcore.properties")
+        archiveSpaceStore File.join(Config.bm_solr_node.solr.home, "archive-SpacesStore/conf/solrcore.properties")
+        workspaceSpaceStore File.join(Config.bm_solr_node.solr.home, "workspace-SpacesStore/conf/solrcore.properties")
       end
     end
 

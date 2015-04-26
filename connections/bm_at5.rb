@@ -3,7 +3,7 @@ module BmAt4
 
   Config.on "bm_at5" do
     os OS_UNIX
-    
+
     settings do
       hostname ENV['hostname']
       username ENV['username']
@@ -14,7 +14,7 @@ module BmAt4
     tomcat do
       jvmRoute "alf05"
     end
-    
+
     tcp do
       host Config.bm_at5.settings.hostname
     end
