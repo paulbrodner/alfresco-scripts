@@ -12,13 +12,10 @@ module ClusterNode
   include DevOn
 
   Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
-  Command.run_shell "kill -9 $(ps aux | grep '[t]omcat' | awk '{print $2}')"
+  Command.kill_program "tomcat"
 
   # upload mysql conector
   Command.upload_file(use_file($config, "mysql-connector-java-5.1.17-bin.jar"), "#{$config.tomcat.lib}/mysql-connector-java-5.1.17-bin.jar")
-
-  # kill tomcat 
-  Command.run_shell "kill -9 $(ps aux | grep '[t]omcat' | awk '{print $2}')"
 
   # upload
   Command.upload_file(use_file($config, "alfresco-global.properties.erb"), "#{$config.tomcat.shared.classes.home}/alfresco-global.properties")

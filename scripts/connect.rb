@@ -10,7 +10,6 @@ module Install
     Command.run_shell("ls -la")
   end
 
-
   provision_on $config
 end
 

@@ -2,10 +2,9 @@ module Deploy_selenium_rc
   include DevOn
 
   # Unix Deploy
-
-  Command.run_shell "kill -9 $(ps aux | grep '[s]elenium-node' | awk '{print $2}')"
-  Command.run_shell "kill -9 $(ps aux | grep '[s]elenium-hub' | awk '{print $2}')"
-  Command.run_shell "kill -9 $(ps aux | grep '[s]elenium-server' | awk '{print $2}')"
+  Command.kill_program "selenium-node"
+  Command.kill_program "selenium-hub"
+  Command.kill_program "selenium-server"
 
   Command.run_shell("sudo mkdir #{$config.location.unix}")
   Command.run_shell("sudo chmod -R 777 #{$config.location.unix}")

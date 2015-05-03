@@ -9,7 +9,7 @@
 module Install_solr
   include DevOn
 
-  Command.run_shell "kill -9 $(ps aux | grep '[t]omcat' | awk '{print $2}')"
+  Command.kill_program "tomcat"
 
   #clean solr.log from tomcat
   Command.run_shell "cd #{$config.tomcat.home} && cat /dev/null > solr.log"

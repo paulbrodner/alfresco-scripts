@@ -4,9 +4,8 @@
 module Install
   include DevOn
 
-  Command.run_shell "kill -9 $(ps aux | grep '[t]omcat' | awk '{print $2}')"
-
-  Command.run_shell "kill -9 $(ps aux | grep '[p]ostgres' | awk '{print $2}')"
+  Command.kill_program "tomcat"
+  Command.kill_program "postgres"
 
   #clean alfresco.log
   Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > alfresco.log"
