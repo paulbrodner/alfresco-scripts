@@ -3,5 +3,9 @@ module Rna_dashlets
 
   Config.on "rna_dashlets" do
     presets_file "/opt/alfresco-5.0/tomcat/webapps/share/WEB-INF/classes/alfresco/site-data/presets/presets.xml"
+    
+    alfresco do
+      home "/opt/alfresco-5.0"
+    end
   end
 end

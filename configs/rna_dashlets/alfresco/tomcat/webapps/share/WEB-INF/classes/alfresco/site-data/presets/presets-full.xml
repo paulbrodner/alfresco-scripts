@@ -54,13 +54,13 @@
 			</component>
 			<component>
 				<scope>page</scope>
-				<region-id>component-3-1</region-id>
+				<region-id>component-2-4</region-id>
 				<source-id>site/${siteid}/dashboard</source-id>
 				<url>/pentaho/components/dashlets/site-activity-report</url>
 			</component>
 			<component>
 				<scope>page</scope>
-				<region-id>component-3-2</region-id>
+				<region-id>component-2-5</region-id>
 				<source-id>site/${siteid}/dashboard</source-id>
 				<url>/pentaho/components/dashlets/site-content-creation-report</url>
 			</component>
@@ -137,13 +137,13 @@
 			</component>
 			<component>
 				<scope>page</scope>
-				<region-id>component-3-1</region-id>
+				<region-id>component-2-4</region-id>
 				<source-id>user/${userid}/dashboard</source-id>
 				<url>/pentaho/components/dashlets/assignee-report</url>
 			</component>
 			<component>
 				<scope>page</scope>
-				<region-id>component-3-2</region-id>
+				<region-id>component-2-5</region-id>
 				<source-id>user/${userid}/dashboard</source-id>
 				<url>/pentaho/components/dashlets/process-duration-trend-report</url>
 			</component>

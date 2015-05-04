@@ -1,7 +1,7 @@
-module BmAt1
+module BmAWS8
   include DevOn
 
-  Config.on "aws_benched5" do
+  Config.on "aws_benched8" do
     os OS_UNIX
 
     settings do
