@@ -1,7 +1,7 @@
-module BmAt1
+module BM
   include DevOn
 
-  Config.on "aws_benched7" do
+  Config.on "aws_benched" do
     settings do
       hostname ENV['hostname']
       username ENV['username']

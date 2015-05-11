@@ -4,7 +4,7 @@ module BmClusterNode
   Config.on "bm_cluster_node" do
 
     alfresco do
-      home "/home/#{ENV['username']}/alfresco-4.1.10"
+      home "/home/#{ENV['username']}/alfresco-4.1.10-b30"
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
     end
 
@@ -42,7 +42,7 @@ module BmClusterNode
     end
 
     dir do
-      remote "/data/nfs/replicate/bm0013_4110_b5"
+      remote "/data/nfs/replicate/upgrade-402-411"
     end
 
     db do

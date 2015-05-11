@@ -10,6 +10,7 @@ module HarvestLogs
   end
 
   Command.download_file($config.alfresco.log, structure("alfresco.log"))
+  Command.download_file($config.alfresco.share.log, structure("share.log"))
   Command.download_file($config.tomcat.catalina_out, structure("tomcat/catalina.out"))
 
   provision_on $config
