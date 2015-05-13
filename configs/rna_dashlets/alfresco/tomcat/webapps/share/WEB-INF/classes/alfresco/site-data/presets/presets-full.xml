@@ -50,7 +50,7 @@
 				<scope>page</scope>
 				<region-id>component-2-3</region-id>
 				<source-id>site/${siteid}/dashboard</source-id>
-				<url>/pentaho/components/dashlets/site-hot-content-report</url>
+				<url>/pentaho/components/dashlets/site-hot-content-report-cda</url>
 			</component>
 			<component>
 				<scope>page</scope>
