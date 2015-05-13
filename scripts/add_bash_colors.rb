@@ -14,7 +14,7 @@ alias ls='ls -GFh'}
   Command.run_shell("touch ~/.bash_profile")
   Command.run_shell("echo '#{coloring}' >> ~/.bash_profile")
   Command.run_shell("source ~/.bash_profile")
-  
+
   provision_on $config
 end
 
