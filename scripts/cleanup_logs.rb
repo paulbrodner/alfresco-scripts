@@ -5,14 +5,21 @@
 module CleanUpLogs
   include DevOn
 
-  Command.backup "#{$config.alfresco.home}/alfresco.log"
-  Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > alfresco.log"
+  Command.run_shell("ls #{$config.alfresco.home}/*.log*")
+  logs = provision_on $config
 
-  Command.backup "#{$config.alfresco.home}/solr.log"
-  Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > solr.log"
+  logs.each do | log|
+    Command.backup log
+    Command.run_shell "cat /dev/null > #{log}"
+  end
 
-  Command.backup "#{$config.tomcat.home}/catalina.out"
-  Command.run_shell "cd #{$config.tomcat.home}/logs && cat /dev/null > catalina.out"
+  Command.run_shell("ls #{$config.tomcat.home}/logs/*.log*")
+  logsTomcat = provision_on $config
+
+  logsTomcat.each do | log|
+    Command.backup log
+    Command.run_shell "cat /dev/null > #{log}"
+  end
 
   provision_on $config
 end

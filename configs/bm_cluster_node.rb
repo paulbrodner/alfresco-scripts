@@ -9,14 +9,13 @@ module BmClusterNode
       share do
         log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
       end
+      version File.dirname(Config.bm_cluster_node.alfresco.home)
     end
 
     hazelcast do
       interface "172.29.20.*"
-      members "172.29.20.12,172.29.20.13,172.29.20.14,172.29.20.15"
+      members "alf01,alf02,alf03,alf04"
     end
-
-
 
     tomcat do
       jvmRoute $connection.tomcat.jvmRoute
@@ -51,9 +50,10 @@ module BmClusterNode
     end
 
     db do
-      #name "bm0013_4110_b5_cluster"
       name "bm0013_upgrade_402_411"
       url "jdbc:mysql://db01:3306/${db.name}?useUnicode=yes&characterEncoding=UTF-8"
+      username "bm0013"
+      password "bm0013"
     end
 
     cluster do
@@ -62,13 +62,27 @@ module BmClusterNode
 
     tcp do
       host $connection.tcp.host
-      initial_hosts "172.29.20.12[7800],172.29.20.13[7800],172.29.20.14[7800],172.29.20.15[7800]"
+      initial_hosts "alf01[7800],alf02[7800],alf03[7800],alf04[7800]"
       start_port "7800"
     end
 
     solr do
-      host "172.29.20.18"
+      host "sl01"
       port "8080"
+    end
+
+    backups do
+      b402 do
+        contentstore do
+          source "/data/nfs/backup/BM-0010-20130620/data/contentstore-bm-0009/contentstore_2012_for_402.tar.gz"
+          destination "/data/nfs/replicate/upgrade-4.0.2-to-#{Config.bm_cluster_node.alfresco.version}"
+        end
+
+        mysql do
+          source "/data/nfs/backup/BM-0010-20130620/data/contentstore-bm-0009/20121119-402-backup-schema.tar.gz"
+          destination "#{Config.bm_cluster_node.backups.b402.contentstore.destination}/schema/20121119-402-backup-schema.sql"
+        end
+      end
     end
   end
 
@@ -77,4 +91,7 @@ module BmClusterNode
   Config.bm_cluster_node.add_compatibility!("restart_alfresco_tomcat")
   Config.bm_cluster_node.add_compatibility!("cleanup_logs")
   Config.bm_cluster_node.add_compatibility!("harvest_logs")
+  Config.bm_cluster_node.add_compatibility!("stop_bm_node")
+  Config.bm_cluster_node.add_compatibility!("unzip_backup")
+  Config.bm_cluster_node.add_compatibility!("import_mysql_backup")
 end
