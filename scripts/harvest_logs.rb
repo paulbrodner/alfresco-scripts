@@ -9,9 +9,8 @@ module HarvestLogs
     File.join("LOGS/"+$connection.name, folder + "/" +name)
   end
 
-  Command.download_file($config.alfresco.log, structure("alfresco.log"))
   Command.download_file($config.tomcat.catalina_out, structure("tomcat/catalina.out"))
-  Command.run_shell("ls #{$config.alfresco.home}/solr.log*")
+  Command.run_shell("ls #{$config.alfresco.home}/*.log*")
 
   # run the provisioning and extract the log files
   files = provision_on($config)
