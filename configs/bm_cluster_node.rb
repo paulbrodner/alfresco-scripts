@@ -6,12 +6,17 @@ module BmClusterNode
     alfresco do
       home "/home/#{ENV['username']}/alfresco-4.1.10-b30"
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
+      share do
+        log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
+      end
     end
 
     hazelcast do
       interface "172.29.20.*"
       members "172.29.20.12,172.29.20.13,172.29.20.14,172.29.20.15"
     end
+
+
 
     tomcat do
       jvmRoute $connection.tomcat.jvmRoute
