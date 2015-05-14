@@ -3,13 +3,29 @@ module BmClusterNode
 
   Config.on "bm_cluster_node" do
 
+    installer do
+      binary "/data/nfs/software/alfresco/alfresco-5.1/alfresco-community-5.1-SNAPSHOT-installer-linux-x64.bin"
+      db_name "bm0013_upg_402_411"
+      jdbc_username "bm0013"
+      jdbc_password "bm0013"
+      jdbc_url "jdbc:mysql://db01:3306/#{Config.bm_cluster_node.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
+      enable_components "javaalfresco,alfrescosharepoint,alfrescowcmqs,libreofficecomponent"
+      disable_components "postgres"
+      driver "com.mysql.jdbc.Driver"
+      install_as_a_service "0"
+    end
+
     alfresco do
-      home "/home/#{ENV['username']}/alfresco-4.1.10-b30"
+      home "/home/#{ENV['username']}/#{File.basename(Config.bm_cluster_node.installer.binary,".*").split("-installer").first}"
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
       share do
         log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
       end
       version File.dirname(Config.bm_cluster_node.alfresco.home)
+    end
+
+    dir do
+      remote "/data/nfs/replicate/upgrade-402-411"
     end
 
     hazelcast do
@@ -45,15 +61,11 @@ module BmClusterNode
       end
     end
 
-    dir do
-      remote "/data/nfs/replicate/upgrade-402-411"
-    end
-
     db do
-      name "bm0013_upgrade_402_411"
-      url "jdbc:mysql://db01:3306/${db.name}?useUnicode=yes&characterEncoding=UTF-8"
-      username "bm0013"
-      password "bm0013"
+      name Config.bm_cluster_node.installer.db_name
+      url Config.bm_cluster_node.installer.jdbc_url
+      username Config.bm_cluster_node.installer.jdbc_username
+      password Config.bm_cluster_node.installer.jdbc_password
     end
 
     cluster do
@@ -71,6 +83,9 @@ module BmClusterNode
       port "8080"
     end
 
+    #
+    # backups old execution
+    #
     backups do
       b402 do
         contentstore do
@@ -94,4 +109,5 @@ module BmClusterNode
   Config.bm_cluster_node.add_compatibility!("stop_bm_node")
   Config.bm_cluster_node.add_compatibility!("unzip_backup")
   Config.bm_cluster_node.add_compatibility!("import_mysql_backup")
+  Config.bm_cluster_node.add_compatibility!("install_alfresco")
 end
