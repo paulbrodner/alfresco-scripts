@@ -1,5 +1,7 @@
 #
 # Install Alfresco
+# just define in your configuration file the attributes listed in configs/install_alfresco.rb
+#
 #
 module InstallAlfresco
   include DevOn
@@ -18,8 +20,6 @@ cd #{File.dirname($config.installer.binary)} && #{$config.installer.binary} --mo
 
 
   Command.run_shell("chmod +x #{$config.installer.binary}")
-
-  Command.run_shell(unattended)
   Command.run_shell(unattended)
 
   provision_on $config
