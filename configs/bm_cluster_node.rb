@@ -5,7 +5,7 @@ module BmClusterNode
 
     installer do
       binary "/data/nfs/software/alfresco/alfresco-5.1/alfresco-community-5.1-SNAPSHOT-installer-linux-x64.bin"
-      db_name "bm0013_upg_402_411"
+      db_name "bm0013_upg_402_502"
       jdbc_username "bm0013"
       jdbc_password "bm0013"
       jdbc_url "jdbc:mysql://db01:3306/#{Config.bm_cluster_node.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
@@ -25,7 +25,7 @@ module BmClusterNode
     end
 
     dir do
-      remote "/data/nfs/replicate/upgrade-402-411"
+      remote "/data/nfs/replicate/upgrade-4.0.2-to-5.0.2"
     end
 
     hazelcast do

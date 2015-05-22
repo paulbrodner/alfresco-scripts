@@ -25,8 +25,10 @@ module Install_solr
 
   Command.upload_file(use_file($config, "web.xml"), File.join($config.tomcat.webapps.solr.web_inf, "web.xml"))
 
-  #start tomcat on solr
-  Command.run_shell "cd #{$config.tomcat.home} && ./bin/startup.sh"
+  Command.ask_permision do
+    #start tomcat on solr
+    Command.run_shell "cd #{$config.tomcat.home} && ./bin/startup.sh"
+  end
 
   provision_on $config
 end

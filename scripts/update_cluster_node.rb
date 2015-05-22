@@ -46,7 +46,10 @@ module ClusterNode
   #clean alfresco.log
   Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > alfresco.log"
 
-  #start server
-  Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  Command.ask_permision do
+    #start server
+    Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  end
+
   provision_on $config
 end
