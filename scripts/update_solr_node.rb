@@ -14,7 +14,7 @@ module Install_solr
   #clean solr.log from tomcat
   Command.run_shell "cd #{$config.tomcat.home} && cat /dev/null > solr.log"
 
-  # http://docs.alfresco.com/4.1/tasks/solr-install-config.html
+  # http://docs.alfresco.com/5.0/tasks/solr4-install-config.html
   Command.upload_file(use_file($config, "solr.xml.erb"), "#{$config.tomcat.catalina.localhost}/solr.xml")
 
   Command.upload_file(use_file($config, "a-solrcore.properties.erb"), $config.solr.core_properties.archiveSpaceStore)

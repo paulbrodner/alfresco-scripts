@@ -9,13 +9,17 @@ enable.alfresco.tracking=true
 cache.alfresco.size=100
 max.field.length=2147483647
 
+#
+# Alfresco version
+#
+alfresco.version=5.0.2 (r@scm-revision@-b@build-number@)
 
 #
 # Properties loaded during alfresco tracking
 #
 alfresco.host=<%= $config.alfresco.host %>
 alfresco.port=<%= $config.alfresco.port %>
-#alfresco.host=172.29.20.12
+#alfresco.host=alf01
 #alfresco.port=8080
 alfresco.port.ssl=8443
 alfresco.baseUrl=/alfresco
@@ -92,3 +96,5 @@ solr.maxBooleanClauses=10000
 alfresco.metadata.skipDescendantAuxDocsForSpecificTypes=true
 alfresco.metadata.ignore.datatype.0=cm:person
 alfresco.metadata.ignore.datatype.1=app:configurations
+alfresco.metadata.skipDescendantAuxDocsForSpecificAspects=false
+#alfresco.metadata.ignore.aspect.0=

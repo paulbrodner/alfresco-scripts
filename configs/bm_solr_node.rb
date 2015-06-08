@@ -20,7 +20,7 @@ module MmSolrNode
     end
 
     solr do
-      home "/home/bm0013/alfresco-enterprise-solr-4.1.10-b30"
+      home "/home/bm0013/alfresco-enterprise-solr1-5.0.2-b11"
       index_data "/data/solr/solr-index-data"
       core_properties do
         archiveSpaceStore File.join(Config.bm_solr_node.solr.home, "archive-SpacesStore/conf/solrcore.properties")
