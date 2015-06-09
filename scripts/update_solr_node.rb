@@ -9,13 +9,14 @@
 module Install_solr
   include DevOn
 
+  # for 5.0.N unzip alfresco-enterprise.5.0.n.zip and copy to ~/
   Command.kill_program "tomcat"
 
   #clean solr.log from tomcat
   Command.run_shell "cd #{$config.tomcat.home} && cat /dev/null > solr.log"
 
   # http://docs.alfresco.com/5.0/tasks/solr4-install-config.html
-  Command.upload_file(use_file($config, "solr.xml.erb"), "#{$config.tomcat.catalina.localhost}/solr.xml")
+  Command.upload_file(use_file($config, "solr.xml.erb"), "#{$config.tomcat.catalina.localhost}/solr4.xml")
 
   Command.upload_file(use_file($config, "a-solrcore.properties.erb"), $config.solr.core_properties.archiveSpaceStore)
   Command.upload_file(use_file($config, "w-solrcore.properties.erb"), $config.solr.core_properties.workspaceSpaceStore)
