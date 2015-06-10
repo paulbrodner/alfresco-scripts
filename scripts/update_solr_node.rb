@@ -10,6 +10,8 @@ module Install_solr
   include DevOn
 
   # for 5.0.N unzip alfresco-enterprise.5.0.n.zip and copy to ~/
+  # copy solr4.zip from alfresco out of the box installation
+
   Command.kill_program "tomcat"
 
   #clean solr.log from tomcat

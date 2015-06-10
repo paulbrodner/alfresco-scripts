@@ -8,6 +8,13 @@ export CATALINA_PID
 TOMCAT_STATUS=""
 ERROR=0
 PID=""
+ALLOW_TOMCAT_ASROOT=1
+
+TOMCAT_ASTOMCATUSER=0
+if [ `id|sed -e s/uid=//g -e s/\(.*//g` -eq 0 ] && [ $ALLOW_TOMCAT_ASROOT -eq 0 ]; then
+    TOMCAT_ASTOMCATUSER=1
+fi
+
 
 start_tomcat() {
     is_tomcat_running
@@ -16,20 +23,33 @@ start_tomcat() {
         echo "$0 $ARG: tomcat (pid $PID) already running"
     else
 	rm -f $CATALINA_PID
-	export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -Xss1024k -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=<%= $config.alfresco.home %> -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true"
-	$TOMCAT_BINDIR/startup.sh 
-	if [ $? -eq 0 ];  then
+	export JAVA_HOME=$JRE_HOME
+	previousdir=`pwd`
+	cd $CATALINA_HOME/..
+	if [ $TOMCAT_ASTOMCATUSER -eq 1 ]; then
+	    $TOMCAT_BINDIR/daemon.sh start
+	else
+	    $TOMCAT_BINDIR/startup.sh
+	fi
+        is_tomcat_running
+        RUNNING=$?
+	if [ $RUNNING -eq 1 ];  then
             echo "$0 $ARG: tomcat started"
 	else
             echo "$0 $ARG: tomcat could not be started"
             ERROR=1
 	fi
+	cd $previousdir
     fi
 }
 
 daemon_tomcat() {
-    export JAVA_OPTS="-XX:MaxPermSize=512m -Xms1G -Xmx20G -XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=<%= $config.alfresco.home %> -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true -XX:ReservedCodeCacheSize=128m"
-    $TOMCAT_BINDIR/catalina.sh run
+    export JAVA_HOME=$JRE_HOME
+    if [ $TOMCAT_ASTOMCATUSER -eq 1 ]; then
+	$TOMCAT_BINDIR/daemon.sh start
+    else
+	$TOMCAT_BINDIR/catalina.sh run
+    fi
 }
 
 stop_tomcat() {
@@ -39,11 +59,15 @@ stop_tomcat() {
         echo "$0 $ARG: $TOMCAT_STATUS"
         exit
     fi
-    $TOMCAT_BINDIR/shutdown.sh 300 -force 
+	if [ $TOMCAT_ASTOMCATUSER -eq 1 ]; then
+	    $TOMCAT_BINDIR/daemon.sh stop
+	else
+	    $TOMCAT_BINDIR/shutdown.sh 300 -force 
+	fi    
     sleep 2
     is_tomcat_running
     RUNNING=$?
-    COUNTER=4
+    COUNTER=30
     while [ $RUNNING -ne 0 ] && [ $COUNTER -ne 0 ]; do
         COUNTER=`expr $COUNTER - 1`
         sleep 2

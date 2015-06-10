@@ -14,7 +14,7 @@ module MmSolrNode
       webapps do
         home File.join(Config.bm_solr_node.tomcat.home, "webapps")
         solr do
-          web_inf File.join(Config.bm_solr_node.tomcat.webapps.home, "solr/WEB-INF")
+          web_inf File.join(Config.bm_solr_node.tomcat.webapps.home, "solr4/WEB-INF")
         end
       end
     end
@@ -28,7 +28,7 @@ module MmSolrNode
       end
     end
 
-    # bind with alfresco directly or with a load balancer
+    # bind with alfresco directly or with a load balancer or a single node
     alfresco do
       host "lb01"
       port "80"

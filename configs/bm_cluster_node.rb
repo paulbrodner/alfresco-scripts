@@ -4,8 +4,9 @@ module BmClusterNode
   Config.on "bm_cluster_node" do
 
     installer do
-      binary "/data/nfs/software/alfresco/alfresco-5.1/alfresco-community-5.1-SNAPSHOT-installer-linux-x64.bin"
-      db_name "bm0013_upg_402_502"
+      binary "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
+      db_name "502_b11"
+      #"bm0013_upg_402_502"
       jdbc_username "bm0013"
       jdbc_password "bm0013"
       jdbc_url "jdbc:mysql://db01:3306/#{Config.bm_cluster_node.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
@@ -16,7 +17,7 @@ module BmClusterNode
     end
 
     alfresco do
-      home "/home/#{ENV['username']}/#{File.basename(Config.bm_cluster_node.installer.binary,".*").split("-installer").first}"
+      home "/home/#{ENV['username']}/alfresco-5.0.2"
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
       share do
         log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
@@ -25,7 +26,7 @@ module BmClusterNode
     end
 
     dir do
-      remote "/data/nfs/replicate/upgrade-4.0.2-to-5.0.2"
+      remote "/data/nfs/replicate/test"
     end
 
     hazelcast do
@@ -44,13 +45,14 @@ module BmClusterNode
         classes do
           home File.join(Config.bm_cluster_node.tomcat.home, "shared/classes")
           alfresco_extension File.join(Config.bm_cluster_node.tomcat.shared.classes.home, "alfresco/extension")
-          alfresco_license File.join(Config.bm_cluster_node.tomcat.shared.classes.alfresco_extension, "license")
           alfresco_web_extension File.join(Config.bm_cluster_node.tomcat.shared.classes.home, "alfresco/web-extension")
         end
       end
 
       webapps do
         home File.join(Config.bm_cluster_node.tomcat.home, "webapps")
+        solr4 File.join(Config.bm_cluster_node.tomcat.webapps.home, "solr4")
+        solr4war File.join(Config.bm_cluster_node.tomcat.webapps.home, "solr4.war")
         alfresco do
           web_inf File.join(Config.bm_cluster_node.tomcat.webapps.home, "alfresco/WEB-INF")
 
@@ -90,7 +92,7 @@ module BmClusterNode
       b402 do
         contentstore do
           source "/data/nfs/backup/BM-0010-20130620/data/contentstore-bm-0009/contentstore_2012_for_402.tar.gz"
-          destination "/data/nfs/replicate/upgrade-4.0.2-to-#{Config.bm_cluster_node.alfresco.version}"
+          destination Config.bm_cluster_node.dir.remote
         end
 
         mysql do
