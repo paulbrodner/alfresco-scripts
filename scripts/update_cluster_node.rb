@@ -12,7 +12,7 @@ module ClusterNode
   include DevOn
 
   #Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
-  #Command.kill_program "tomcat"
+  Command.kill_program "tomcat"
 
   # upload mysql conector
   Command.upload_file(use_file($config, "mysql-connector-java-5.1.17-bin.jar"), "#{$config.tomcat.lib}/mysql-connector-java-5.1.17-bin.jar")
@@ -44,10 +44,10 @@ module ClusterNode
   #clean alfresco.log
   Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > alfresco.log"
 
-  # Command.ask_permision do
-  #   #start server
-  #   Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
-  # end
+  Command.ask_permision do
+    #start server
+    Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  end
 
   provision_on $config
 end

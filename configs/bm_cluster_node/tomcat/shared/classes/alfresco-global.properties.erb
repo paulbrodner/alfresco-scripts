@@ -97,10 +97,14 @@ solr.secureComms=none
 ### BPM Engine ###
 system.workflow.engine.jbpm.enabled=false
 
+#ISSUES - WORKAROUND
+# https://issues.alfresco.com/jira/browse/MNT-14125
+# https://issues.alfresco.com/jira/browse/ALF-21315
+system.usages.enabled=true
+
 # Disabling unneded features
 cifs.enabled=false
 audit.enabled=false
-system.usages.enabled=false
 system.usages.clearBatchSize=0
 replication.enabled=false
 

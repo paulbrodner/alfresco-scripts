@@ -5,10 +5,10 @@ export INTERACTIVE=false
 ##
 ## HARVEST_LOGS from all BM machines
 ##
-#rake scripts:run CMD=5,2,5 INTERACTIVE=true
-#rake scripts:run CMD=5,3,5
-#rake scripts:run CMD=5,4,5
-#rake scripts:run CMD=5,5,5
+#rake scripts:run CMD=6,2,5 INTERACTIVE=true
+rake scripts:run CMD=6,3,1 INTERACTIVE=true
+rake scripts:run CMD=6,4,1
+rake scripts:run CMD=6,5,1
 
 
 ##

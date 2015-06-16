@@ -1,12 +1,14 @@
 module BmClusterNode
   include DevOn
+  # change this constants only
+  DB_NAME           = "bm0013_upg_402_502"
+  REPLICATE_FOLDER  = "/data/nfs/replicate/upgrade-4.0.2-to-5.0.2"
 
   Config.on "bm_cluster_node" do
 
     installer do
       binary "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
-      db_name "502_b11"
-      #"bm0013_upg_402_502"
+      db_name DB_NAME
       jdbc_username "bm0013"
       jdbc_password "bm0013"
       jdbc_url "jdbc:mysql://db01:3306/#{Config.bm_cluster_node.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
@@ -26,7 +28,7 @@ module BmClusterNode
     end
 
     dir do
-      remote "/data/nfs/replicate/test"
+      remote REPLICATE_FOLDER
     end
 
     hazelcast do
