@@ -12,7 +12,10 @@ module ClusterNode
   include DevOn
 
   Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  Command.run_shell "sleep 5"
+
   Command.kill_program "tomcat"
+  Command.kill_program "postgres"
 
   # upload mysql conector
   Command.upload_file(use_file($config, "mysql-connector-java-5.1.17-bin.jar"), "#{$config.tomcat.lib}/mysql-connector-java-5.1.17-bin.jar")
@@ -35,16 +38,12 @@ module ClusterNode
   Command.upload_file(use_file($config, "web.xml"), "#{$config.tomcat.webapps.alfresco.web_inf}/web.xml")
 
   #CLUSTER settings
-  #Initiating clustering: http://docs.alfresco.com/4.1/tasks/jgroups-repo.html
-  Command.upload_file(use_file($config, "ehcache-custom.xml"), "#{$config.tomcat.shared.classes.alfresco_extension}/ehcache-custom.xml")
-  Command.upload_file(use_file($config, "custom-cache-context.xml"), "#{$config.tomcat.shared.classes.alfresco_extension}/custom-cache-context.xml")
-  Command.upload_file(use_file($config, "disable-transformers-context.xml"), "#{$config.tomcat.shared.classes.alfresco_extension}/disable-transformers-context.xml")
-
-  #hazelcast share: http://docs.alfresco.com/4.1/concepts/hazelcast-cluster-share.html
+  #hazelcast share: http://docs.alfresco.com/4.2/concepts/hazelcast-cluster-share.html
   Command.upload_file(use_file($config, "custom-slingshot-application-context.xml.erb"), "#{$config.tomcat.shared.classes.alfresco_web_extension}/custom-slingshot-application-context.xml")
 
   #clean alfresco.log
   Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > alfresco.log"
+  Command.run_shell "cd #{$config.alfresco.home} && cat /dev/null > tomcat/logs/catalina.out"
 
   Command.ask_permision do
     #start server

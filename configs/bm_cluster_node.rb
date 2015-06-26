@@ -1,11 +1,15 @@
 module BmClusterNode
   include DevOn
+  DB_NAME              = "db425"
+  DIR_REMOTE_REPLICATE = "/data/nfs/replicate/4.0.N"
+  BINARY_INSTALLER     = "/data/nfs/software/alfresco/alfresco-4.2.5/alfresco-enterprise-4.2.5-installer-linux-x64.bin"
+  ALFRESCO_HOME        = "/home/#{ENV['username']}/alfresco-4.2.5"
 
   Config.on "bm_cluster_node" do
 
     installer do
-      binary "/data/nfs/software/alfresco/alfresco-5.1/alfresco-community-5.1-SNAPSHOT-installer-linux-x64.bin"
-      db_name "bm0013_upg_402_502"
+      binary BINARY_INSTALLER
+      db_name DB_NAME
       jdbc_username "bm0013"
       jdbc_password "bm0013"
       jdbc_url "jdbc:mysql://db01:3306/#{Config.bm_cluster_node.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
@@ -16,7 +20,7 @@ module BmClusterNode
     end
 
     alfresco do
-      home "/home/#{ENV['username']}/#{File.basename(Config.bm_cluster_node.installer.binary,".*").split("-installer").first}"
+      home ALFRESCO_HOME
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
       share do
         log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
@@ -25,7 +29,7 @@ module BmClusterNode
     end
 
     dir do
-      remote "/data/nfs/replicate/upgrade-4.0.2-to-5.0.2"
+      remote DIR_REMOTE_REPLICATE
     end
 
     hazelcast do

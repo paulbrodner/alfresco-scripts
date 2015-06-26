@@ -12,16 +12,14 @@ dir.auditcontentstore=${dir.remote}/audit.contentstore
 dir.cachedcontent=${dir.remote}/cachedcontent
 
 # Enabling cluster
-alfresco.cluster.name=<%= $config.cluster.name %>
-alfresco.jgroups.defaultProtocol=TCP
-alfresco.tcp.initial_hosts=<%= $config.tcp.initial_hosts %>
-alfresco.tcp.start_port=<%= $config.tcp.start_port %>
 index.recovery.mode=AUTO
-alfresco.jgroups.bind_address=<%= $config.tcp.host %>
-alfresco.ehcache.rmi.hostname=<%= $config.tcp.host %>
-alfresco.rmi.services.external.host=<%= $config.tcp.host %>
-alfresco.ehcache.rmi.remoteObjectPort=60000
-alfresco.ehcache.rmi.port=60001
+alfresco.hazelcast.tcp.config=<%= $config.hazelcast.members %>
+alfresco.hazelcast.specify.interface=true
+alfresco.hazelcast.bind.interface=<%= $connection.tomcat.jvmRoute %>
+alfresco.hazelcast.port=5701
+alfresco.hazelcast.autoinc.port=false
+alfresco.hazelcast.mancenter.enabled=false
+alfresco.hazelcast.max.no.heartbeat.seconds=15
 
 alfresco.context=alfresco
 alfresco.host=127.0.0.1
@@ -88,7 +86,7 @@ index.subsystem.name=solr
 solr.port=<%= $config.solr.port %>
 solr.host=<%= $config.solr.host %>
 solr.secureComms=none
-solr.port.ssl=8443
+#solr.port.ssl=8443
 
 ### BPM Engine ###
 system.workflow.engine.jbpm.enabled=false

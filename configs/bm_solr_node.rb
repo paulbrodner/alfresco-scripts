@@ -1,6 +1,7 @@
 module MmSolrNode
   include DevOn
-
+  SOLR_HOME = "/home/bm0013/alfresco-4.2.5-b5"
+  
   Config.on "bm_solr_node" do
 
     tomcat do
@@ -20,7 +21,7 @@ module MmSolrNode
     end
 
     solr do
-      home "/home/bm0013/alfresco-enterprise-solr-4.1.10-b30"
+      home SOLR_HOME
       index_data "/data/solr/solr-index-data"
       core_properties do
         archiveSpaceStore File.join(Config.bm_solr_node.solr.home, "archive-SpacesStore/conf/solrcore.properties")
