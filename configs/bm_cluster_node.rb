@@ -1,7 +1,7 @@
 module BmClusterNode
   include DevOn
-  DB_NAME              = "db425"
-  DIR_REMOTE_REPLICATE = "/data/nfs/replicate/4.0.N"
+  DB_NAME              = "bm0013_425"
+  DIR_REMOTE_REPLICATE = "/data/nfs/replicate/402_425"
   BINARY_INSTALLER     = "/data/nfs/software/alfresco/alfresco-4.2.5/alfresco-enterprise-4.2.5-installer-linux-x64.bin"
   ALFRESCO_HOME        = "/home/#{ENV['username']}/alfresco-4.2.5"
 
@@ -43,6 +43,12 @@ module BmClusterNode
       lib File.join(Config.bm_cluster_node.tomcat.home, "lib")
       scripts File.join(Config.bm_cluster_node.tomcat.home, "scripts")
       conf File.join(Config.bm_cluster_node.tomcat.home, "conf")
+      catalina do
+        localhost do
+          home File.join(Config.bm_cluster_node.tomcat.conf, "Catalina/localhost")
+          sorlxml File.join(Config.bm_cluster_node.tomcat.catalina.localhost.home, "sorl.xml")
+        end
+      end
       catalina_out File.join(Config.bm_cluster_node.tomcat.home, "logs/catalina.out")
       shared do
         classes do

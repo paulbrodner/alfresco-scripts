@@ -11,8 +11,8 @@
 module ClusterNode
   include DevOn
 
-  Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
-  Command.run_shell "sleep 5"
+  #Command.run_shell "cd #{$config.alfresco.home} && ./alfresco.sh start"
+  #Command.run_shell "sleep 5"
 
   Command.kill_program "tomcat"
   Command.kill_program "postgres"
@@ -27,8 +27,11 @@ module ClusterNode
   Command.upload_file(use_file($config, "log4j.properties"), $config.tomcat.webapps.alfresco.classes.log4j)
 
   # add license
-  Command.run_shell "mkdir #{$config.tomcat.shared.classes.alfresco_license}"
-  Command.upload_file(use_file($config, "ravi-41.lic"), "#{$config.tomcat.shared.classes.alfresco_license}/ravi-41.lic")
+  #Command.run_shell "mkdir #{$config.tomcat.shared.classes.alfresco_license}"
+  Command.upload_file(use_file($config, "ravi-41.lic"), "#{$config.alfresco.home}/ravi-41.lic")
+
+  #remove solr
+  Command.run_shell "rm #{$config.tomcat.catalina.localhost.sorlxml}"
 
   # tomcat cfg  
   Command.upload_file(use_file($config, "ctl.sh.erb"), "#{$config.tomcat.scripts}/ctl.sh")
