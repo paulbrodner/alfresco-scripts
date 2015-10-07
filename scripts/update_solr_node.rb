@@ -30,7 +30,7 @@ module Install_solr
   Command.upload_file(use_file($config, "web.xml"), File.join($config.tomcat.webapps.solr.web_inf, "web.xml"))
 
   #copy solr4 to tomcat webapps
-  Command.run_shell("cp #{File.dirname($config.solr.home)}/web-server/webapps/solr4.war #{$config.tomcat.webapps.home}")
+  Command.run_shell("cp #{$config.solr.home}/solr4.war #{$config.tomcat.webapps.home}")
   
   Command.ask_permision do
     #start tomcat on solr
