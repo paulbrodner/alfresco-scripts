@@ -1,13 +1,14 @@
 module BmClusterNode
   include DevOn
   # change this constants only
-  DB_NAME           = "bm0013_upg_402_502"
-  REPLICATE_FOLDER  = "/data/nfs/replicate/upgrade-4.0.2-to-5.0.2"
+  DB_NAME           = "bm0013_v51_paul"
+  ALFRESCO_HOME     = "/home/#{ENV['username']}/alfresco-51-b372"
+  REPLICATE_FOLDER  = "/data/nfs/replicate/bm0013_v51_paul"
+  INSTALLER_BIN     = "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
 
   Config.on "bm_cluster_node" do
-
     installer do
-      binary "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
+      binary INSTALLER_BIN
       db_name DB_NAME
       jdbc_username "bm0013"
       jdbc_password "bm0013"
@@ -19,7 +20,7 @@ module BmClusterNode
     end
 
     alfresco do
-      home "/home/#{ENV['username']}/alfresco-5.0.2"
+      home ALFRESCO_HOME
       log File.join(Config.bm_cluster_node.alfresco.home, "alfresco.log")
       share do
         log  File.join(Config.bm_cluster_node.alfresco.home, "share.log")
@@ -113,5 +114,5 @@ module BmClusterNode
   Config.bm_cluster_node.add_compatibility!("stop_bm_node")
   Config.bm_cluster_node.add_compatibility!("unzip_backup")
   Config.bm_cluster_node.add_compatibility!("import_mysql_backup")
-  Config.bm_cluster_node.add_compatibility!("install_alfresco")
+  Config.bm_cluster_node.add_compatibility!("installing_alfresco")
 end

@@ -85,6 +85,18 @@
       <filter-name>Global Localization Filter</filter-name>
       <filter-class>org.alfresco.web.app.servlet.GlobalLocalizationFilter</filter-class>
    </filter>
+
+   <filter>
+      <filter-name>X509AuthFilter</filter-name>
+      <filter-class>org.alfresco.web.app.servlet.AlfrescoX509ServletFilter</filter-class>
+      <!--
+      Uncomment to validate a specific cert for a specific URL.
+      <init-param>
+         <param-name>cert-contains</param-name>
+         <param-value>CN=Alfresco Repository Client,OU=Unknown,O=Alfresco Software Ltd.,L=Maidenhead,ST=UK,C=GB</param-value>
+      </init-param>
+      -->
+   </filter>
    
    <!-- CORS Filter Begin -->
    <!--<filter>
@@ -217,6 +229,27 @@
       <filter-name>WebDAV Authentication Filter</filter-name>
       <url-pattern>/cmisatom/*</url-pattern>
    </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>X509AuthFilter</filter-name>
+      <url-pattern>/service/api/solr/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>X509AuthFilter</filter-name>
+      <url-pattern>/s/api/solr/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>X509AuthFilter</filter-name>
+      <url-pattern>/wcservice/api/solr/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>X509AuthFilter</filter-name>
+      <url-pattern>/wcs/api/solr/*</url-pattern>
+   </filter-mapping>
+
 
    <filter-mapping>
       <filter-name>Office Services Authentication Filter</filter-name>

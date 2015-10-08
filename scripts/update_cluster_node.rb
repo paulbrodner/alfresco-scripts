@@ -20,16 +20,19 @@ module ClusterNode
   # upload
   Command.upload_file(use_file($config, "alfresco-global.properties.erb"), "#{$config.tomcat.shared.classes.home}/alfresco-global.properties")
 
-  #logs
+  # create alfresco folders
+  Command.run_shell "mkdir -p #{File.dirname($config.tomcat.webapps.alfresco.classes.log4j)}"
+
+  # logs 
   Command.upload_file(use_file($config, "log4j.properties"), $config.tomcat.webapps.alfresco.classes.log4j)
 
   #remove solr4
+  Command.run_shell "rm -rf #{$config.alfresco.home}/solr4"
   Command.run_shell "rm -rf #{$config.tomcat.webapps.solr4}"
   Command.run_shell "rm -f #{$config.tomcat.webapps.solr4war}"
 
   # add license
-  Command.run_shell "mkdir #{$config.tomcat.shared.classes.alfresco_license}"
-  Command.upload_file(use_file($config, "ravi-all enabled.lic"), "#{$config.alfresco.home}/ravi-all enabled.lic")
+  Command.upload_file(use_file($config, "Ent5.1-AllEnabled-Exp01012017.lic"), "#{$config.alfresco.home}/Ent5.1-AllEnabled-Exp01012017.lic")
 
   # tomcat cfg  
   Command.upload_file(use_file($config, "ctl.sh.erb"), "#{$config.tomcat.scripts}/ctl.sh")

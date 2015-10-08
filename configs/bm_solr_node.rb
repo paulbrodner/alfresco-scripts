@@ -1,6 +1,6 @@
 module MmSolrNode
   include DevOn
-  SOLR_HOME = "/home/bm0013/alfresco-enterprise-5.0.2/solr4"
+  SOLR_HOME = "/home/bm0013/alfresco-solr4-5.1"
 
   #-------------------
   Config.on "bm_solr_node" do
