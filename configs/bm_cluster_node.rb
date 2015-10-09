@@ -1,9 +1,9 @@
 module BmClusterNode
   include DevOn
   # change this constants only
-  DB_NAME           = "bm0013_v51_paul"
-  ALFRESCO_HOME     = "/home/#{ENV['username']}/alfresco-51-b372"
-  REPLICATE_FOLDER  = "/data/nfs/replicate/bm0013_v51_paul"
+  DB_NAME           = "tempalf"
+  ALFRESCO_HOME     = "/home/#{ENV['username']}/alfresco-v51-b379"
+  REPLICATE_FOLDER  = "/data/nfs/replicate/delete"
   INSTALLER_BIN     = "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
 
   Config.on "bm_cluster_node" do
@@ -43,6 +43,10 @@ module BmClusterNode
       lib File.join(Config.bm_cluster_node.tomcat.home, "lib")
       scripts File.join(Config.bm_cluster_node.tomcat.home, "scripts")
       conf File.join(Config.bm_cluster_node.tomcat.home, "conf")
+      catalina do
+        home File.join(Config.bm_cluster_node.tomcat.conf, "Catalina")
+        localhost File.join(Config.bm_cluster_node.tomcat.catalina.home, "localhost")
+      end
       catalina_out File.join(Config.bm_cluster_node.tomcat.home, "logs/catalina.out")
       shared do
         classes do

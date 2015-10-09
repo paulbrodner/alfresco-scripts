@@ -20,25 +20,23 @@ module ClusterNode
   # upload
   Command.upload_file(use_file($config, "alfresco-global.properties.erb"), "#{$config.tomcat.shared.classes.home}/alfresco-global.properties")
 
-  # create alfresco folders
-  Command.run_shell "mkdir -p #{File.dirname($config.tomcat.webapps.alfresco.classes.log4j)}"
-
-  # logs 
-  Command.upload_file(use_file($config, "log4j.properties"), $config.tomcat.webapps.alfresco.classes.log4j)
-
   #remove solr4
   Command.run_shell "rm -rf #{$config.alfresco.home}/solr4"
   Command.run_shell "rm -rf #{$config.tomcat.webapps.solr4}"
   Command.run_shell "rm -f #{$config.tomcat.webapps.solr4war}"
+  Command.run_shell "rm -f #{$config.tomcat.catalina.localhost}/solr4.xml"
 
   # add license
   Command.upload_file(use_file($config, "Ent5.1-AllEnabled-Exp01012017.lic"), "#{$config.alfresco.home}/Ent5.1-AllEnabled-Exp01012017.lic")
 
   # tomcat cfg  
   Command.upload_file(use_file($config, "ctl.sh.erb"), "#{$config.tomcat.scripts}/ctl.sh")
+  
   # tomcat disable ssl
   Command.upload_file(use_file($config, "server.xml.erb"), "#{$config.tomcat.conf}/server.xml")
   Command.upload_file(use_file($config, "tomcat-users.xml"), "#{$config.tomcat.conf}/tomcat-users.xml")
+
+  Command.run_shell "mkdir -p #{$config.tomcat.webapps.alfresco.web_inf}"
   Command.upload_file(use_file($config, "web.xml"), "#{$config.tomcat.webapps.alfresco.web_inf}/web.xml")
 
   #CLUSTER HAZELCAST settings
