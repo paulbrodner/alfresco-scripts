@@ -34,8 +34,8 @@ module MmSolrNode
 
     # bind with alfresco directly or with a load balancer or a single node
     alfresco do
-      host "alf01"
-      port "8080"
+      host "lb01"
+      port "80"
     end
 
   end
