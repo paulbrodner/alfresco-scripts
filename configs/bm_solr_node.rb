@@ -1,11 +1,13 @@
 module MmSolrNode
   include DevOn
-  SOLR_HOME = "/home/bm0013/alfresco-solr4-5.1"
+  SOLR_HOME = "/home/bm0013/alfresco-one-20151203-SNAPSHOT-563/solr4"
 
   #-------------------
   Config.on "bm_solr_node" do
 
     tomcat do
+      # wget http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.zip
+      # unzip apache-tomcat-7.0.59.zip
       home "/home/bm0013/apache-tomcat-7.0.59"
       conf File.join(Config.bm_solr_node.tomcat.home, "conf")
 
@@ -32,8 +34,8 @@ module MmSolrNode
 
     # bind with alfresco directly or with a load balancer or a single node
     alfresco do
-      host "lb01"
-      port "80"
+      host "alf01"
+      port "8080"
     end
 
   end

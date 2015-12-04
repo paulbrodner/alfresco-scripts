@@ -17,7 +17,7 @@ module Install_solr
   #clean solr.log from tomcat
   Command.run_shell "cd #{$config.tomcat.home} && cat /dev/null > solr.log"
 
-  # http://docs.alfresco.com/5.0/tasks/solr4-install-config.html
+  # http://docs.alfresco.com/5.1/tasks/solr4-install-config.html
   Command.upload_file(use_file($config, "solr.xml.erb"), "#{$config.tomcat.catalina.localhost}/solr4.xml")
 
   Command.upload_file(use_file($config, "a-solrcore.properties.erb"), $config.solr.core_properties.archiveSpaceStore)
@@ -26,16 +26,11 @@ module Install_solr
   Command.upload_file(use_file($config, "server.xml"), File.join($config.tomcat.conf, "server.xml"))
   Command.upload_file(use_file($config, "tomcat-users.xml"), File.join($config.tomcat.conf, "tomcat-users.xml"))
 
-  Command.run_shell "mkdir -p #{$config.tomcat.webapps.solr.web_inf}"
-  Command.upload_file(use_file($config, "web.xml"), File.join($config.tomcat.webapps.solr.web_inf, "web.xml"))
+  #Command.run_shell "mkdir -p #{$config.tomcat.webapps.solr.web_inf}"
+  #Command.upload_file(use_file($config, "web.xml"), File.join($config.tomcat.webapps.solr.web_inf, "web.xml"))
 
   #copy solr4 to tomcat webapps
   Command.run_shell("cp #{$config.solr.home}/solr4.war #{$config.tomcat.webapps.home}")
-  
-  Command.ask_permision do
-    #start tomcat on solr
-    Command.run_shell "cd #{$config.tomcat.home} && ./bin/startup.sh"
-  end
 
   provision_on $config
 end
