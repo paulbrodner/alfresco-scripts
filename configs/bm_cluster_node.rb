@@ -1,9 +1,9 @@
 module BmClusterNode
   include DevOn
   # change this constants only
-  DB_NAME           = "ACE4814"
-  ALFRESCO_HOME     = "/home/#{ENV['username']}/alfresco-one-b563"
-  REPLICATE_FOLDER  = "/data/nfs/replicate/ace-4814"
+  DB_NAME           = "shared"
+  ALFRESCO_HOME     = "/home/#{ENV['username']}/alfresco-one-b577"
+  REPLICATE_FOLDER  = "/data/nfs/replicate/#{DB_NAME}"
   INSTALLER_BIN     = "/data/nfs/software/alfresco/alfresco-5.0.2/build-00011/alfresco-enterprise-5.0.2-installer-linux-x64.bin"
 
   Config.on "bm_cluster_node" do
