@@ -18,7 +18,8 @@ transferservice.receiver.enabled=true
 ### CLUSTERING
 alfresco.cluster.enabled=true
 alfresco.cluster.name=bm0013
-alfresco.hazelcast.tcp.config=<%= $config.hazelcast.members %>
+alfresco.cluster.interface=<%= $config.hazelcast.interface %>
+alfresco.hazelcast.tcp.config=<members><%= $config.hazelcast.members %></members>
 alfresco.hazelcast.specify.interface=true
 alfresco.hazelcast.bind.interface=<%= $connection.tomcat.jvmRoute %>
 alfresco.hazelcast.port=5701
@@ -69,6 +70,7 @@ authentication.rmi.service.port=0
 repo.rmi.service.port=0
 action.rmi.service.port=0
 deployment.rmi.service.port=0
+alfresco.rmi.services.host=<%= $connection.tomcat.jvmRoute %>
 
 ### External executable locations ###
 ooo.exe=<%= $config.alfresco.home %>/libreoffice/program/soffice
@@ -167,3 +169,7 @@ cache.authoritySharedCache.maxItems=200000
 cache.authorityToChildAuthoritySharedCache.maxItems=200000
 cache.zoneToAuthoritySharedCache.maxItems=10000
 cache.personSharedCache.maxItems=100000
+
+### Virtual Folders Config Properties ###
+virtual.folders.enabled=false
+#virtual.folders.config.system.templates.path=${app:Data Dictionary}/${app:Virtual Folder Templates}
