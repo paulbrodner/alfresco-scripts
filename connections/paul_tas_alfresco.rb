@@ -1,14 +1,16 @@
-module BM
+module Jenkins
   include DevOn
 
-  Config.on "aws_benched" do
+  Config.on "paul_tas_alfresco" do
+    os OS_UNIX
+
     settings do
       hostname ENV['hostname']
       username ENV['username']
-      key_data "~/.ssh/reporting-qa.pem"
+      password ENV['password']
       port ENV['port']
     end
-    
+
     tmp "/tmp"
   end
 end

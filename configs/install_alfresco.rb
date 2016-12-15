@@ -1,27 +1,27 @@
 module MmSolrNode
   include DevOn
 
-  Config.on "default_alfresco" do
+  Config.on "install_alfresco" do
 
     installer do
-      binary "/data/nfs/software/alfresco/alfresco-5.1/alfresco-community-5.1-SNAPSHOT-installer-linux-x64.bin"
+      binary "/downloads/alfresco-one-installer-5.1.2-linux-x64.bin"
       db_name "alfresco"
       jdbc_username "alfresco"
       jdbc_password "admin"
-      jdbc_url  "jdbc:postgresql://localhost:5432/#{Config.default_alfresco.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
-      enable_components "javaalfresco,alfrescosharepoint,alfrescowcmqs,libreofficecomponent"
+      jdbc_url  "jdbc:postgresql://localhost:5432/#{Config.install_alfresco.installer.db_name}?useUnicode=yes&characterEncoding=UTF-8"
+      enable_components "javaalfresco,postgres,libreofficecomponent,alfrescosolr,alfrescosolr4,aosmodule,alfrescowcmqs,alfrescogoogledocs"
       disable_components ""
       driver "org.postgresql.Driver"
       install_as_a_service "0"
     end
 
     alfresco do
-      home "/home/#{ENV['username']}/#{File.basename(Config.default_alfresco.installer.binary,".*").split("-installer").first}"
+      home "/#{ENV['username']}/#{File.basename(Config.install_alfresco.installer.binary,".*").split("-installer").first}"
     end
 
   end
 
   #add compatible with this script
-  Config.default_alfresco.add_compatibility!("install_alfresco")
-  Config.default_alfresco.add_compatibility!("restart_alfresco_tomcat")
+  Config.install_alfresco.add_compatibility!("install_alfresco")
+  Config.install_alfresco.add_compatibility!("restart_alfresco_tomcat")
 end
