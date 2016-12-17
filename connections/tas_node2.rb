@@ -1,7 +1,7 @@
 module Jenkins
   include DevOn
 
-  Config.on "paul_tas_alfresco" do
+  Config.on "tas_node2" do
     os OS_UNIX
 
     settings do
@@ -9,6 +9,8 @@ module Jenkins
       username ENV['username']
       password ENV['password']
       port ENV['port']
+      ldap_username ENV['ALFRESCO_USERNAME']  #defined in .bash_profile
+      ldap_password ENV['ALFRESCO_PASSWORD']  #defined in .bash_profile
     end
 
     tmp "/tmp"
