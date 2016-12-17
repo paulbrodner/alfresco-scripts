@@ -43,6 +43,9 @@ Modify configuration/scripts files as you wish and run rake helper commands
 rake -T # for a list of available tasks
 ```
 
+- add ALFRESCO_USERNAME and ALFRESCO_PASSWORD in ~/.bash_profile (export them in ENV)
+- define your env.yml file (see [env.yml.example](connections/env.yml.example) )
+
 ## Useful Tools
 
 FreeSSHD http://www.freesshd.com/?ctt=download
