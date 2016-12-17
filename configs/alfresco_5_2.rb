@@ -9,8 +9,8 @@ module AlfrescoTAS
    	download_location "/root/#{Config.alfresco_5_2.installer_name}"      
 
    	setup do 
-	  driver "org.postgresql.Driver"
-	  jdbc_url "jdbc:postgresql://localhost:5432/${db.name}"
+	    driver "org.postgresql.Driver"
+	    jdbc_url "jdbc:postgresql://localhost:5432/${db.name}"
    	end
 
    	amps do 

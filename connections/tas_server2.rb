@@ -1,7 +1,7 @@
 module Jenkins
   include DevOn
 
-  Config.on "tas_node2" do
+  Config.on "tas_server2" do
     os OS_UNIX
 
     settings do
