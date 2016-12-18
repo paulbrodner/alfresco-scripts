@@ -8,6 +8,11 @@ module AlfrescoTAS
    	installer_name File.basename(Config.alfresco_5_2.nightlybuild)
    	download_location "/root/#{Config.alfresco_5_2.installer_name}"      
 
+    jolokia do
+      download_url "https://repo1.maven.org/maven2/org/jolokia/jolokia-war/1.3.5/jolokia-war-1.3.5.war"
+      name File.basename(Config.alfresco_5_2.jolokia.download_url)
+    end
+
    	setup do 
 	    driver "org.postgresql.Driver"
 	    jdbc_url "jdbc:postgresql://localhost:5432/${db.name}"
