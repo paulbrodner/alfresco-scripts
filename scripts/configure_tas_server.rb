@@ -42,8 +42,8 @@ module ConfigureTASNode
     Command.run_shell "cd /opt/alfresco-one/bin && java -jar alfresco-mmt.jar install ../amps/#{File.basename(amp_name)} ../tomcat/webapps/alfresco.war"
   end
 
-  Command.run_shell "cd /opt/alfresco-one/bin && java -jar alfresco-mmt.jar list ../tomcat/webapps/alfresco.war > /opt/alfresco-one/installed_amp"
-  Command.run_shell "cat /opt/alfresco-one/installed_amp"  
+  Command.run_shell "cd /opt/alfresco-one/bin && java -jar alfresco-mmt.jar list ../tomcat/webapps/alfresco.war > /opt/alfresco-one/installed_amps"
+  Command.run_shell "cat /opt/alfresco-one/installed_amps"  
 
   ## 8) Start server
   Command.run_shell("cd /opt/alfresco-one && ./alfresco.sh start")
