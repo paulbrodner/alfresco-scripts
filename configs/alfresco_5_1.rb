@@ -28,5 +28,6 @@ module AlfrescoTAS
 
   #add compatible with this script
   Config.alfresco_5_1.add_compatibility!("configure_tas_server")
+  Config.alfresco_5_1.add_compatibility!("cleanup_tas_server")
 end
   
