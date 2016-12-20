@@ -74,3 +74,22 @@ smart.folders.enabled=false
 
 ### Remote JMX (Default: disabled) ###
 alfresco.jmx.connector.enabled=true
+alfresco.rmi.services.port=50500
+alfresco.rmi.services.host=0.0.0.0
+
+hostname.private=<%= $connection.settings.hostname %>
+hostname.public=<%= $connection.settings.hostname  %>
+
+### cmis
+opencmis.server.value=http://<%= $connection.settings.hostname  %>:8080/alfresco/api
+
+### cifs
+cifs.ipv6.enabled=false
+cifs.enabled=true
+cifs.serverName=${localname}A
+cifs.hostannounce=true
+cifs.domain=
+cifs.tcpipSMB.port=445
+cifs.netBIOSSMB.namePort=137
+cifs.netBIOSSMB.datagramPort=138
+cifs.netBIOSSMB.sessionPort=139
