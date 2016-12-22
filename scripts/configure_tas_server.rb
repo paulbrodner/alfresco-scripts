@@ -5,6 +5,7 @@ module ConfigureTASNode
   ## # prepare environment 
   ## library for mounting drives AOS
   Command.run_shell "apt-get install davfs2 -y"
+  Command.run_shell "echo \"use_locks      0\" >> /etc/davfs2/davfs2.conf"
 
   ## 0)
   ## check smb server is running - nothing should be returned except of command process id

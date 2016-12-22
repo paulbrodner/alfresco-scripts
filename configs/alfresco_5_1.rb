@@ -3,7 +3,7 @@ module AlfrescoTAS
   include DevOn
 
   Config.on "alfresco_5_1" do
-   	nightlybuild "https://nightlybuilds.alfresco.com/Enterprise-5.1/5.1.2/build-00012/ALL/alfresco-one-installer-5.1.2-linux-x64.bin"	  
+   	nightlybuild "https://nightlybuilds.alfresco.com/Enterprise-5.1/5.1.N/build-00597/ALL/alfresco-one-installer-5.1.3-SNAPSHOT-linux-x64.bin"	  
    	
    	installer_name File.basename(Config.alfresco_5_1.nightlybuild)
    	download_location "/root/#{Config.alfresco_5_1.installer_name}"      
@@ -19,10 +19,25 @@ module AlfrescoTAS
       install_location "/opt/alfresco-one"
    	end
 
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-log-extension/1.0.0/alfresco-log-extension-1.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-contentmodel-extension/1.0.0/alfresco-contentmodel-extension-1.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-workflow-extension/1.0.0/alfresco-workflow-extension-1.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-action-extension/1.0.0/alfresco-action-extension-1.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-authentication-extension/1.0.0/alfresco-authentication-extension-1.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-behaviours-extension/2.0.0/alfresco-behaviours-extension-2.0.0.amp
+    # https://$LDAP_USER:$LDAP_PASS@nexus.alfresco.com/nexus/content/repositories/internal-releases/org/alfresco/tas/alfresco-subsystems-extension/1.0.0/alfresco-subsystems-extension-1.0.0.amp
    	amps do 
    	  root "https://nexus.alfresco.com/nexus/service/local/repositories/internal-releases/content/org/alfresco/tas/"
    	  # all array of amps here 
-   	  alfresco_war ['alfresco-log-extension/1.0.0/alfresco-log-extension-1.0.0.amp']
+   	  alfresco_war ['alfresco-log-extension/1.0.0/alfresco-log-extension-1.0.0.amp', 
+                    'alfresco-workflow-extension/1.0.0/alfresco-workflow-extension-1.0.0.amp',
+                    'alfresco-authentication-extension/1.0.0/alfresco-authentication-extension-1.0.0.amp',
+                    'alfresco-contentmodel-extension/1.0.0/alfresco-contentmodel-extension-1.0.0.amp',
+                    'alfresco-action-extension/1.0.0/alfresco-action-extension-1.0.0.amp',
+                    'alfresco-scheduledJobs-extension/1.0.0/alfresco-scheduledJobs-extension-1.0.0.amp',
+                    'alfresco-behaviours-extension/2.0.0/alfresco-behaviours-extension-2.0.0.amp',
+                    'alfresco-subsystems-extension/1.0.0/alfresco-subsystems-extension-1.0.0.amp'
+                  ]
    	end   	
   end
 
