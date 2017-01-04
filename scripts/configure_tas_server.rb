@@ -23,7 +23,7 @@ module ConfigureTASNode
   ## 2)
   ## if installer is not on disk download it from nightlybuilds  
   ##
-  Command.run_shell("if [ ! -f \"$config.installer_name}\" ]; then wget #{$config.nightlybuild}; fi")
+  Command.run_shell("if [ ! -f \"#{$config.installer_name}\" ]; then wget #{$config.nightlybuild}; fi")
   
   ## 3)
   ## Make binary executable
