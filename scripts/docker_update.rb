@@ -22,8 +22,10 @@ module DockerUpdate
   # here we get the ID of container and use this ID (stored in $output of devOn) to next shell script)  
   Command.run_shell "docker ps | grep tas-alfresco | awk '{print $1}' | head -1"
 
+  append_command "supervisorctl stop tomcat-alfresco"
   append_command "wget https://releases.alfresco.com/AOS-Module/1.1.5/alfresco-aos-module-1.1.5.zip; unzip alfresco-aos-module-1.1.5.zip"
   append_command "cp _vti_bin.war ../alfresco/webapps/"
+  append_command "supervisorctl start tomcat-alfresco"
   append_command "ls -la"
   
   # run the file
