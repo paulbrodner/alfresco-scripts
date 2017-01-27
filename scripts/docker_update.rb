@@ -33,7 +33,12 @@ module DockerUpdate
   Command.run_shell("./#{@file}")
 
   #and provision the machine with:
-  provision_on $config
+  provision_on $config  
+  
+  cmd  = "ssh #{$connection.settings['username']}@#{$connection.settings['hostname']}"
+  puts cmd
+  puts "Start connection on server.... Connection: \n#{$connection.settings.to_h.inspect}"  
+  `#{cmd}`
 end
 
 
