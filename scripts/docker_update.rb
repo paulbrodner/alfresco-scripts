@@ -36,10 +36,9 @@ module DockerUpdate
   #and provision the machine with:
   provision_on $config  
   
-  cmd  = "ssh #{$connection.settings['username']}@#{$connection.settings['hostname']}"
+  cmd  = "ssh #{$connection.settings['username']}@#{$connection.settings['hostname']}      Use: #{$connection.settings['password']}"
   puts cmd
-  puts "Start connection on server.... Connection: \n#{$connection.settings.to_h.inspect}"  
-  `#{cmd}`
+  
 end
 
 
