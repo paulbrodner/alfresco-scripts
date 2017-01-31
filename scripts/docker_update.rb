@@ -25,6 +25,7 @@ module DockerUpdate
   append_command "supervisorctl stop tomcat-alfresco"
   append_command "wget https://releases.alfresco.com/AOS-Module/1.1.5/alfresco-aos-module-1.1.5.zip; unzip alfresco-aos-module-1.1.5.zip"
   append_command "cp _vti_bin.war ../alfresco/webapps/"
+  append_command "cp alfresco-aos-module-1.1.5.amp ../amps"
   append_command "java -jar alfresco-mmt.jar install alfresco-aos-module-1.1.5.amp ../alfresco/webapps/alfresco.war"
   append_command "supervisorctl start tomcat-alfresco"
   append_command "ls -la"
