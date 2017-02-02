@@ -32,15 +32,24 @@ module DockerUpdate
   
   # run the file
   Command.run_shell("chmod +x #{@file}")
-  Command.run_shell("./#{@file}")
+  
 
   #and provision the machine with:
   provision_on $config  
   
-  cmd  = "ssh #{$connection.settings['username']}@#{$connection.settings['hostname']}      Use: #{$connection.settings['password']}"
+  cmd  = "ssh #{$connection.settings['username']}@#{$connection.settings['hostname']}      Use: #{$connection.settings['password']}\n Run manually #{@file} script"
   puts cmd
-  
+
+  puts "Press ENTER to continue and cleanup the #{@file} script in Container..."
+
+  STDIN.gets.chomp
+
+  Command.run_shell("rm -f #{@file}")
+   # and provision the machine with:
+  provision_on $config
 end
+
+
 
 
   
