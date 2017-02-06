@@ -6,7 +6,7 @@ Alfresco Related Scripts.
 
 Contains configuration files (let's say differed variables, files, shell commands, available 
 in a structure logical order.
-Each "scripts" can be executed using a specific configuration over one active connection.
+Each "script" can be executed using a specific configuration over one active connection.
 Each configuration, will be compatible with one or more scripts. (don't define add_compatibility! and the config file will be available for all scripts)
 
 ```ruby
